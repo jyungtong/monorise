@@ -1,6 +1,6 @@
 {
-  "name": "@monorise/base",
-  "version": "0.0.2",
+  "name": "@jyungtong/monorise-base",
+  "version": "0.0.3-dev0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -18,5 +18,9 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "private": false
 }
