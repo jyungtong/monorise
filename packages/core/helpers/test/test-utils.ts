@@ -53,22 +53,23 @@ export const createStreamClient = () =>
   });
 
 // --- Entity Config Factory ---
+const UserBaseScema = z
+  .object({
+    name: z.string(),
+    email: z.string().email(),
+    role: z.string(),
+    username: z.string(),
+    age: z.number(),
+    newField: z.string(),
+    city: z.string(),
+  })
+  .partial();
 export const createMockEntityConfig = () => ({
   [MockEntityType.USER]: createEntityConfig({
     name: MockEntityType.USER,
     displayName: 'User',
-    baseSchema: z
-      .object({
-        name: z.string(),
-        email: z.string().email(),
-        role: z.string(),
-        username: z.string(),
-        age: z.number(),
-        newField: z.string(),
-        city: z.string(),
-      })
-      .partial(),
-    createSchema: z.object({
+    baseSchema: UserBaseScema,
+    createSchema: UserBaseScema.extend({
       name: z.string(),
       username: z.string(),
     }),

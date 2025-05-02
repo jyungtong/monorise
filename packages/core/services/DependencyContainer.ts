@@ -32,17 +32,21 @@ export class DependencyContainer {
   private _instanceCache: Map<string, any>;
   private _publishEvent: typeof publishEventType | null;
   private _tableName: string;
+  private _dynamodbClient?: DynamoDB;
 
   constructor(
     public config: {
       EntityConfig: Record<Entity, ReturnType<typeof createEntityConfig>>;
       AllowedEntityTypes: Entity[];
       EmailAuthEnabledEntities: Entity[];
+      dynamodbClient?: DynamoDB;
       tableName?: string;
+      publishEvent?: typeof publishEventType;
     },
   ) {
     this._instanceCache = new Map();
-    this._publishEvent = null;
+    this._publishEvent = config.publishEvent ?? null;
+    this._dynamodbClient = config.dynamodbClient;
     this._tableName = config.tableName || CORE_TABLE;
   }
 
@@ -77,7 +81,7 @@ export class DependencyContainer {
   }
 
   get dynamodbClient(): DynamoDB {
-    return this.createCachedInstance(DynamoDB);
+    return this._dynamodbClient ?? this.createCachedInstance(DynamoDB);
   }
 
   get dbUtils(): DbUtils {
