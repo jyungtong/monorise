@@ -26,6 +26,7 @@
   "author": "monorise",
   "license": "MIT",
   "devDependencies": {
+    "@aws-sdk/client-sqs": "^3.799.0",
     "@biomejs/biome": "^1.9.4",
     "@changesets/cli": "^2.28.1",
     "@tsconfig/node20": "^20.1.4",
