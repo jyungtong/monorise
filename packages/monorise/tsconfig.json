@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "baseUrl": ".",
+    "paths": {
+      "@monorise/*": ["../*/dist"]
+    }
+  },
+  "include": ["src/**/*"],
+  "references": [
+    { "path": "../base" },
+    { "path": "../core" },
+    { "path": "../react" }
+  ]
+}
