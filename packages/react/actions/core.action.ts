@@ -210,7 +210,7 @@ const initCoreActions = (
     entityType: T,
     tagName: string,
     opts: CommonOptions & { params?: ListEntitiesByTagParams } = {},
-  ) => {
+  ): Promise<CreatedEntity<T> | undefined> => {
     const tagKey = getTagStateKey(entityType, tagName, opts.params);
 
     const state = monoriseStore.getState();
@@ -1219,7 +1219,7 @@ const initCoreActions = (
       if (query?.length) {
         setIsSearching(true);
         queryTimeout = setTimeout(async () => {
-          await searchEntities(entityType, query); // searchEntities now handles its own errors via defaultOnError
+          await searchEntities(entityType, query);
           setIsSearching(false);
         }, 700);
       }
@@ -1431,8 +1431,7 @@ const initCoreActions = (
     const error = useErrorStore(requestKey);
 
     useEffect(() => {
-      // Check for params existence before calling, as listEntitiesByTag might not need params to be present
-      if (entityType && tagName) {
+      if (entityType && tagName && Object.keys(params).length > 0) {
         listEntitiesByTag(entityType, tagName, opts);
       }
     }, [entityType, opts, tagName, params, opts?.forceFetch]);
@@ -1459,8 +1458,7 @@ const initCoreActions = (
       isFirstFetched,
       lastKey,
       refetch: async () => {
-        if (entityType && tagName) {
-          // Removed params?.group check as it might not always be required for a tag list
+        if (entityType && tagName && params?.group) {
           return await listEntitiesByTag(entityType, tagName, {
             ...opts,
             forceFetch: true,
@@ -1468,8 +1466,7 @@ const initCoreActions = (
         }
       },
       listMore: async () => {
-        if (entityType && tagName) {
-          // Removed params?.group check
+        if (entityType && tagName && params?.group) {
           return await listEntitiesByTag(entityType, tagName, {
             ...opts,
             forceFetch: true,
