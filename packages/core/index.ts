@@ -57,6 +57,5 @@ export {
   tagProcessor,
   DependencyContainer,
   StandardError,
+  CoreFactory,
 };
-
-export default CoreFactory;
