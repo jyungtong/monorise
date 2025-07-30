@@ -1,0 +1,87 @@
+// Re-export everything from base
+export * from '@monorise/base';
+
+// Re-export everything from core, aliasing conflicting names
+export {
+  setupCommonRoutes,
+  Entity as CoreEntity,
+  EntityRepository,
+  EntityService,
+  Mutual as CoreMutual,
+  MutualService,
+  MutualRepository,
+  TagRepository,
+  PROJECTION_EXPRESSION,
+  createEntityProcessor,
+  mutualProcessor,
+  prejoinProcessor,
+  replicationProcessor,
+  tagProcessor,
+  DependencyContainer,
+  StandardError,
+  StandardErrorCode,
+} from '@monorise/core';
+
+// Re-export everything from react, aliasing conflicting names
+export {
+  store,
+  axios,
+  authService,
+  filestoreService,
+  coreService,
+  setConfig,
+  getConfig,
+  useConfig,
+  startLoading,
+  endLoading,
+  setError,
+  getError,
+  clearError,
+  openModal,
+  closeModal,
+  useLoadStore,
+  useInterruptiveLoadStore,
+  useErrorStore,
+  useModalStore,
+  requestLogin,
+  useProfile,
+  getProfile,
+  useIsUnauthorized,
+  setIsUnauthorized,
+  logout,
+  listMoreEntities,
+  createEntity,
+  upsertEntity,
+  editEntity,
+  updateLocalEntity,
+  deleteEntity,
+  getMutual,
+  createMutual,
+  createLocalMutual,
+  upsertLocalMutual,
+  editMutual,
+  deleteMutual,
+  deleteLocalMutual,
+  useEntity,
+  useEntityByUniqueField,
+  useEntities,
+  useMutual,
+  useMutuals,
+  useTaggedEntities,
+  useEntityState,
+  getEntityRequestKey,
+  getMutualRequestKey,
+  getTagRequestKey,
+  getUniqueFieldRequestKey,
+  getEntity,
+  MutualDataWithIndex,
+  MutualDataMapping,
+  MutualData,
+  Mutual as ReactMutual,
+} from '@monorise/react';
+
+// Re-export default exports
+import CoreFactory from '@monorise/core';
+import Monorise from '@monorise/react';
+
+export { CoreFactory, Monorise };

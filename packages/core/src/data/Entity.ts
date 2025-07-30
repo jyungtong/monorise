@@ -9,11 +9,7 @@ import {
   type UpdateItemCommandInput,
 } from '@aws-sdk/client-dynamodb';
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
-import type {
-  EntitySchemaMap,
-  Entity as EntityType,
-  createEntityConfig,
-} from '@monorise/base';
+import { EntitySchemaMap, Entity as EntityType, createEntityConfig } from 'monorise';
 import { ulid } from 'ulid';
 import { StandardError, StandardErrorCode } from '../errors/standard-error';
 import { fromLastKeyQuery } from '../helpers/fromLastKeyQuery';
